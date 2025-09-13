@@ -1,0 +1,262 @@
+/* PART 1: CSS3 TRANSITIONS AND ANIMATIONS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #060607f5 0%, #0b0b0d 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+h1 {
+    color: white;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-align: center;
+    animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+/* Keyframe animation for title */
+@keyframes titleGlow {
+    from {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    to {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.6);
+    }
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.section {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Smooth hover transition */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.section h2 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+/* Button hover effects with transitions */
+.animated-button {
+    background: linear-gradient(45deg, #336029, #0bdb7d);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+
+.animated-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+}
+
+.animated-button:active {
+    transform: translateY(0);
+}
+
+/* Animated box for transformations */
+.animated-box {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, #aacbcffb, #f1e0c5);
+    border-radius: 10px;
+    margin: 20px auto;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
+}
+
+/* Card flip animation styles */
+.flip-card {
+    background-color: transparent;
+    width: 200px;
+    height: 150px;
+    perspective: 1000px;
+    margin: 20px auto;
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.flip-card-front {
+    background: linear-gradient(45deg, #bd9a81, #e7d26e);
+    color: white;
+}
+
+.flip-card-back {
+    background: linear-gradient(45deg, #bcc990f3, #e1bb63);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+/* Loading spinner animation */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #fff;
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+}
+
+.loading-spinner.active {
+    opacity: 1;
+    transform: scale(1);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    transform: translateY(-50px);
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    max-width: 400px;
+    margin: 20px;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+}
+
+.close-button {
+    background: #28453cec;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background 0.3s ease;
+}
+
+.close-button:hover {
+    background: #c0da12e0;
+}
+
+/* Slide animations */
+.slide-element {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+
+.slide-element.slide-in {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Score display */
+.score-display {
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+/* Pulse animation for active elements */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 0.6s ease-in-out;
+}
